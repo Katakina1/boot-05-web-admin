@@ -14,14 +14,14 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  * 1.静态资源？视图解析器？欢迎页？。。。。。所有的自动配置全部失效
  * 2.也就是需要自己定义,需要自己定义所有底层行为，这个注解一定要慎用
  */
-@EnableWebMvc
+//@EnableWebMvc
 @Configuration
 public class AdminWebConfig implements WebMvcConfigurer {
     /**
      * 定义静态资源行为
      * 访问/aa/** 所有请求 都去classpath:/static/ 下面进行匹配
      * @param registry
-     */
+//     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/aa/**").addResourceLocations("classpath:/static/");
@@ -31,7 +31,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**") // 所有请求都被拦截，静态资源一并拦截了
-                .excludePathPatterns("/", "/login","/css/**", "/images/**", "/js/**", "/fonts/**");
+                .excludePathPatterns("/", "/login","/css/**", "/images/**", "/js/**", "/fonts/**","/hero","/city");
     }
 //    @Bean
 //    public WebMvcRegistrations WebMvcRegistrations() {
